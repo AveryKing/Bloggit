@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import PostModal from "./PostModal";
 import React from "react";
-import ComingSoonModal from "./ComingSoonModal";
+import ErrorModal from "./ErrorModal";
 import LoginModal from './LoginModal'
 import Badge from '@mui/material/Badge';
 
@@ -14,7 +14,7 @@ import {
     SettingsOutlined
 } from "@mui/icons-material";
 import {IconButton} from "@mui/material";
-const NavBar = ({loggedIn = true}) => {
+const NavBar = ({loggedIn = false}) => {
     const openLogin = () => {
         ReactDOM.render(<LoginModal display="1" />, document.getElementById("modal"))
     }

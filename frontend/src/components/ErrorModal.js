@@ -7,6 +7,7 @@ import ReactDOM from "react-dom";
 import NewPostModal from "./NewPostModal";
 import {IconButton} from "@mui/material";
 import {Close} from "@mui/icons-material";
+import LoginModal from "./LoginModal";
 
 const style = {
     position: 'absolute',
@@ -20,7 +21,7 @@ const style = {
     p: 4,
 };
 
-const ComingSoonModal = () => {
+const ErrorModal = () => {
     const [open, setOpen] = React.useState(true);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -28,9 +29,9 @@ const ComingSoonModal = () => {
         ReactDOM.unmountComponentAtNode(document.getElementById("modal"))
     }
 
-    const openNewPost = () => {
+    const openLogin = () => {
         ReactDOM.unmountComponentAtNode(document.getElementById("modal"))
-        ReactDOM.render(<NewPostModal />, document.getElementById("modal"))
+        ReactDOM.render(<LoginModal display='1' />, document.getElementById("modal"))
     }
     return (
 
@@ -45,11 +46,10 @@ const ComingSoonModal = () => {
                         <Close onClick={handleClose} />
                     </IconButton>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Coming Soon!
+                        Error
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        This feature is under development.<br/>
-                        For now, you can <a href="#" onClick={openNewPost}>write a blog post</a> without an account!
+                        You must be <a href="#" onClick={openLogin}>logged in</a> to create a new post.
                     </Typography>
                 </Box>
             </Modal>
@@ -57,4 +57,4 @@ const ComingSoonModal = () => {
     );
 }
 
-export default ComingSoonModal
+export default ErrorModal

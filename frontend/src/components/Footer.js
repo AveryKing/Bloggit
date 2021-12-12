@@ -6,7 +6,7 @@ const Footer = () => {
                 <li className="list-inline-item"><a href="#">Categories</a></li>
                 <li className="list-inline-item"><a href="#">About</a></li>
             </ul>
-            <p className="copyright">Bloggit © 2021</p>
+            <p className="copyright">© 2021 Avery King</p>
         </footer>
 
     )

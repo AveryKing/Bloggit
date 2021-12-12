@@ -1,9 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import NewPostModal from "./NewPostModal";
-const Welcome = () => {
+import ErrorModal from "./ErrorModal";
+const Welcome = ({loggedIn}) => {
     const showNewPostModal = () => {
-        ReactDOM.render(<NewPostModal />, document.getElementById("modal"))
+        if(loggedIn) {
+            ReactDOM.render(<NewPostModal/>, document.getElementById("modal"))
+        } else {
+            ReactDOM.render(<ErrorModal />, document.getElementById("modal"))
+        }
     }
 
 

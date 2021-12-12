@@ -10,19 +10,21 @@ const SignUpForm = ({close}) => {
     const [usernameError, setUsernameError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
 
-
     const addUser = (username,password) => {
-        userService.create({username:username,password:password})
+        //TODO: Make usernames case insensitive, disallow non-alpha characters
+        userService.getAll()
             .then(response => {
-             if(response.error) {
-                 return ReactDOM.render(<Snackbar type="error" text={response.error} />, document.getElementById('snackbar'))
-             } else {
-                NUE.welcomeNewUser(username,()=>{close()})
-                }
-
-
-            })
+                if(Object.values(response).some(x => x.username === username)) {
+                    let errResponse = `The username '${username}' is already taken.`
+                    return ReactDOM.render(<Snackbar type="error" text={errResponse} />, document.getElementById('snackbar'))
+                } else {
+                    userService.create({username:username,password:password})
+                        .then(response => {
+                            NUE.welcomeNewUser(username,()=>{close()})
+                        })
+                }})
     }
+
     const onFormSubmit = (e) => {
         e.preventDefault()
         /**

@@ -39,16 +39,17 @@ const LoginForm = () => {
                     <Typography style={{color:"#575757"}}variant="h4">Login</Typography>
                 </center>
                 </div>
+
                 <div className="mb-3"><input className="form-control" id="uname" type="text" name="uname" placeholder="Username" />
-                    {usernameError ? <small className="form-text text-danger">Your username must be at least 4 characters</small> : null}
+
                 </div>
                 <div className="mb-3"><input className="form-control" id="password" type="text" name="password"
                                              placeholder="Password" />
-                    {passwordError ? <small className="form-text text-danger">Your password must be at least 6 characters</small> : null}
+
                 </div>
                 <div className="mb-3">
                     <button className="btn btn-primary d-block w-100" type="submit"
-                             style={{background: "rgb(71,109,244)"}}>Sign Up
+                             style={{background: "rgb(71,109,244)"}}>Login
                     </button>
                 </div>
                 <a className="forgot" href="#">Don't have an account? Click here to sign up!</a>

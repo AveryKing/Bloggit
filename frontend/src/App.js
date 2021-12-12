@@ -20,13 +20,13 @@ const App = ({mode = 'default', settings = {}}) => {
 
                         )
                 case 'default':
-                    ReactDOM.render(<OpenChatButton />, document.getElementById('open-chat'))
+                   /// ReactDOM.render(<OpenChatButton />, document.getElementById('open-chat'))
                         return (
                             <FadeIn transitionDuration={750}>
                             <div>
                                     <NavBar loggedIn={settings.loggedIn}/>
 
-                                    <HomePage />
+                                    <HomePage loggedIn={settings.loggedIn}/>
                                     <Footer />
                             </div>
                             </FadeIn>
