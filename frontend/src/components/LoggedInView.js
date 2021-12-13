@@ -1,0 +1,28 @@
+import NavBar from "./NavBar";
+import HomePage from "./HomePage";
+import Footer from "./Footer";
+import FadeIn from "react-fade-in";
+import React from "react";
+import ReactDOM from "react-dom";
+import NewPostModal from "./NewPostModal";
+import ErrorModal from "./ErrorModal";
+
+const LoggedInView = ({user}) => {
+
+
+
+    return (
+        <FadeIn transitionDuration={750}>
+            <div>
+
+                <NavBar loggedIn={true} />
+
+                <HomePage loggedIn={true} user={user} />
+                <Footer />
+            </div>
+        </FadeIn>
+
+)
+}
+
+export default LoggedInView
