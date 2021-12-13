@@ -4,7 +4,7 @@ import NewPostModal from "./NewPostModal";
 import ErrorModal from "./ErrorModal";
 import LoginModal from "./LoginModal";
 const Welcome = ({loggedIn=false, user}) => {
-
+//testtttt
 
     const showNewPostModal = () => {
         if(loggedIn) {
