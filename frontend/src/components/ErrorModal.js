@@ -8,7 +8,7 @@ import NewPostModal from "./NewPostModal";
 import {IconButton} from "@mui/material";
 import {Close} from "@mui/icons-material";
 import LoginModal from "./LoginModal";
-
+//oooo
 const style = {
     position: 'absolute',
     top: '40%',
