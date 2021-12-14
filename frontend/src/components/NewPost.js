@@ -3,6 +3,7 @@ import postService from '../services/posts'
 import ReactDOM from "react-dom";
 import App from "../App";
 import Snackbar from './Snackbar'
+import {Button, TextField, Typography} from "@mui/material";
 
 const NewPost = ({handleClose,user}) => {
 
@@ -23,7 +24,8 @@ const NewPost = ({handleClose,user}) => {
         if(document.getElementById("anonymous").checked) {
             author = "Anonymous"
         } else {
-            author = document.getElementById("name").value
+            author = 'lolol'
+         //   author = document.getElementById("name").value
         }
 
         content.length >= 150 ? setBodyError(false) : setBodyError(true)
@@ -48,9 +50,28 @@ const NewPost = ({handleClose,user}) => {
 
         <section className="contact-clean">
             <form method="post" onSubmit={onFormSubmit}>
-                <h2 className="text-center">Create a new post</h2>
+                <Typography variant='h5' className="text-center">Create a new post</Typography><br/>
+
+                <TextField fullWidth id="postTitle" label="Post Title" variant="outlined" />
+
+                {titleError ? <small className="form-text text-danger"><br/>Your title must be at least 5 characters long</small> : null}
+                    <div className="mb-3"></div>
+                    <div className="mb-3">
+                        <TextField fullWidth
+                            id="outlined-multiline-static"
+                            label="Write your post here..."
+                            multiline
+                            rows={7}
+
+                            id='postBody'
+
+                        />
+
+                        {bodyError ? <small className="form-text text-danger">Your post must be at least 150 characters long</small> : null}
+                    </div>
+
                 <div className="mb-3">
-                    {!anonymous ? <input className="form-control" type="text"  id="name" name="name" placeholder="Your Name" /> : null}
+                    {anonymous ? <strong>You are posting anonymously<br/></strong> : null}
                     <div className="form-check">
                         <input onClick={toggleAnonymous} className="form-check-input" type="checkbox" id="anonymous" />
                         <label className="form-check-label" htmlFor="formCheck-1">
@@ -58,22 +79,8 @@ const NewPost = ({handleClose,user}) => {
                         </label>
                     </div>
                 </div>
-                <input className="form-control" type="text" id="postTitle" name="title" placeholder="Post Title" />
-                {titleError ? <small className="form-text text-danger">Your title must be at least 5 characters long</small> : null}
-                    <div className="mb-3"></div>
                     <div className="mb-3">
-                        <textarea id="postBody"
-                                  className="form-control"
-                                  name="message"
-                                  placeholder="Write your post here..."
-                                  rows="14">
-
-                        </textarea>
-                        {bodyError ? <small className="form-text text-danger">Your post must be at least 150 characters long</small> : null}
-                    </div>
-
-                    <div className="mb-3">
-                        <button className="btn btn-primary" type="submit">post</button>
+                        <Button variant='contained' color='primary' type="submit">post</Button>
                     </div>
 
             </form>

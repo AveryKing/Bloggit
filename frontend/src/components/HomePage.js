@@ -1,5 +1,5 @@
 import Welcome from "./Welcome";
-import PostGrid from "./PostGrid";
+import PostGrid2 from "./PostGrid2";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -15,14 +15,14 @@ const HomePage = ({loggedIn, user}) => {
         return (
             <div>
                 <Welcome />
-                <PostGrid />
+                <PostGrid2 />
             </div>
         )
     } else {
         return (
             <div>
                 <Welcome loggedIn={true} user={user}/>
-                <PostGrid />
+                <PostGrid2 />
             </div>
         )
     }

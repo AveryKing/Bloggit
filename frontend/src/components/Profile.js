@@ -1,24 +1,29 @@
 import Typography from "@mui/material/Typography";
-import {Avatar, ButtonGroup, Container, Grid} from "@mui/material";
+import {Avatar, ButtonGroup, Container, Grid, Paper} from "@mui/material";
 import Box from "@mui/material/Box";
 import UserPosts from "./UserPosts";
 import Button from "@mui/material/Button";
 import {ArrowDownwardOutlined, KeyboardArrowDown} from "@mui/icons-material";
+import Card from "@mui/material/Card";
+import PostPreview from "./PostPreview";
+import ProfilePost from "./ProfilePost";
+import PostGrid2 from "./PostGrid2";
+import * as React from "react";
 
 const Profile = ({user,self=false}) => {
 
     if(!self) {
         return (
-            <div>
-                <center>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} sm={12} md={12}>
-                            <Box
-                                sx={{
 
+
+  <div class='container-fluid'>
+      <center>
+
+                            <Box xs={12}
+                                sx={{
                                     alignItems: 'center',
                                     justifyContent: 'space-around',
-                                    width: 800,
+
                                     zIndex: -1,
                                     height: 200,
                                     borderRadius: 4,
@@ -51,20 +56,18 @@ const Profile = ({user,self=false}) => {
 
 
                             </Box>
-                        </Grid>
 
-                        </Grid>
-
+</center>
 
 
-
-                            <center>
-                                <UserPosts/>
-                            </center>
+    <PostGrid2 type='profile'/>
 
 
-                </center>
-            </div>
+
+        </div>
+
+
+
         )
     }
     else {

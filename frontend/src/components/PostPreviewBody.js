@@ -2,6 +2,7 @@ import React from "react";
 import PostModal from "./PostModal";
 import ReactDOM from "react-dom";
 import {Link} from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 const PostPreviewBody = ({content, id}) => {
 
@@ -13,11 +14,11 @@ const PostPreviewBody = ({content, id}) => {
 
 
         <div>
-            <p className="card-text">
+            <Typography className="card-text">
                 {content.substr(0, 145)}.....
                 <br/>
                 <Link onClick={showPost} href="#">See Full Post</Link>
-            </p>
+            </Typography>
         </div>
 
 

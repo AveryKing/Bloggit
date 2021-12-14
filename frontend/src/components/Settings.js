@@ -1,4 +1,5 @@
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 const Settings = ({user}) => {
     return (
@@ -8,14 +9,14 @@ const Settings = ({user}) => {
             <div className="col-lg-12 d-lg-flex justify-content-lg-center">
                 <div className="card shadow mb-3">
                     <div className="card-header py-3">
-                        <p className="text-primary m-0 fw-bold">Your Settings</p>
+                        <Typography variant='h6' >Your Settings</Typography>
                     </div>
                     <div className="card-body">
                         <form>
                             <div className="row">
                                 <div className="col">
                                     <div className="form-group mb-3"><label className="form-label"
-                                                                            htmlFor="email"><strong>Username</strong></label><input className="form-control" type="email"
+                                                                            htmlFor="email"><strong><Typography sx={{fontWeight:'bold'}}>Username</Typography></strong></label><input className="form-control" type="email"
                                                                                                                                     placeholder={user.username} name="email"
                                                                                                                                     readOnly="" disabled/></div>
                                 </div>
@@ -25,7 +26,7 @@ const Settings = ({user}) => {
                             <div className="row">
                                 <div className="col">
                                     <div className="form-group mb-3"><label className="form-label"
-                                                                            htmlFor="email"><strong>Display Name</strong></label><input className="form-control" type="email"
+                                                                            htmlFor="email"><strong><Typography sx={{fontWeight:'bold'}}>Display Name</Typography></strong></label><input className="form-control" type="email"
                                                                                                                                     placeholder={user.username} name="email"
                                                                                                                                     readOnly="" /></div>
                                 </div>
@@ -37,9 +38,9 @@ const Settings = ({user}) => {
 
                             </div>
                             <div className="form-group mb-3">
-                                <button className="btn btn-primary btn-sm" type="submit">Save Settings</button>&emsp;
-                                <button className="btn btn-secondary btn-sm" type="submit">Change Password</button>&emsp;
-                                <button className="btn btn-danger btn-sm" type="">Erase Account</button>
+                                <Button variant='contained' size='small' type="submit">Save Settings</Button>&emsp;
+                                <Button color='secondary' variant='contained' size='small' type="submit">Change Password</Button>&emsp;
+                                <Button color='error' variant='contained' size='small'  type="">Erase Account</Button>
                             </div>
                         </form>
                     </div>
