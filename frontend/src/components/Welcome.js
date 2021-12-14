@@ -4,6 +4,7 @@ import NewPostModal from "./NewPostModal";
 import ErrorModal from "./ErrorModal";
 import LoginModal from "./LoginModal";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 const Welcome = ({loggedIn=false, user}) => {
 //testtttt
 
@@ -22,11 +23,13 @@ const Welcome = ({loggedIn=false, user}) => {
 
                 <div className="container">
                     <div className="intro">
-                        <h2 className="text-center">Welcome!</h2>
+                        <Typography variant='h4' className="text-center">Welcome!</Typography>
                         <p className="text-center">Bloggit is a website where anyone is welcome to share their thoughts.<br/> Click below to create an account!</p>
                     </div>
-                    <div className="buttons"><a onClick={showNewPostModal} className="btn btn-primary" role="button"
-                                                href="#">Sign Up</a></div>
+                    <div className="buttons">
+                        <Button color='primary' onClick={showNewPostModal} size='large' variant='contained'>
+                            Sign Up
+                        </Button></div>
                 </div>
             </section>
         )
@@ -41,8 +44,11 @@ const Welcome = ({loggedIn=false, user}) => {
                         <Typography variant='h6' className="text-center">Click
                             below to make a new post.</Typography>
                     </div>
-                    <div className="buttons"><a onClick={showNewPostModal} className="btn btn-primary" role="button"
-                                                href="#">new post</a></div>
+                    <div className="buttons">
+                        <Button color='primary' onClick={showNewPostModal} size='large' variant='contained'>
+                            New Post
+                        </Button>
+                    </div>
                 </div>
             </section>
         )
