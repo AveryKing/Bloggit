@@ -50,6 +50,11 @@ const NavBar = ({loggedIn = false, app}) => {
 
     }
 
+    const renderApp = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+        ReactDOM.render(<App />, document.getElementById('root'))
+    }
+
     const openMyProfile = () => {
 
         handleClose()
@@ -61,11 +66,12 @@ const NavBar = ({loggedIn = false, app}) => {
         app('settings')
     }
 
+
     if(!loggedIn) {
         return (
 
             <nav className="navbar navbar-light navbar-expand-lg navigation-clean-button">
-                <div className="container"><a className="navbar-brand" href="#">Bloggit</a>
+                <div className="container"><a onClick={renderApp} className="navbar-brand" href="#">Bloggit</a>
                     <button data-bs-toggle="collapse" className="navbar-toggler" data-bs-target="#navcol-1"><span
                         className="visually-hidden">Toggle navigation</span><span className="navbar-toggler-icon"></span>
                     </button>
@@ -97,11 +103,11 @@ const NavBar = ({loggedIn = false, app}) => {
             >
                 <MenuItem onClick={openMyProfile}><PersonOutlined /> &nbsp;Profile</MenuItem>
                 <MenuItem onClick={openSettings}><SettingsOutlined /> &nbsp;Settings</MenuItem>
-                <MenuItem onClick={handleClose}><LogoutOutlined /> &nbsp;Logout</MenuItem>
+                <MenuItem onClick={logout}><LogoutOutlined /> &nbsp;Logout</MenuItem>
             </Menu>
             <nav className="navbar navbar-light navbar-expand-lg navigation-clean-button">
 
-                <div className="container"><a className="navbar-brand" href="#">Bloggit</a>
+                <div className="container"><a onClick={renderApp} className="navbar-brand" href="#">Bloggit</a>
                     <button data-bs-toggle="collapse" className="navbar-toggler" data-bs-target="#navcol-1"><span
                         className="visually-hidden">Toggle navigation</span><span className="navbar-toggler-icon"></span>
                     </button>
@@ -116,7 +122,7 @@ const NavBar = ({loggedIn = false, app}) => {
                             <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={2}><MailOutlined /></Badge></IconButton>
                             <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={4}><NotificationsOutlined /></Badge></IconButton>
                             <IconButton onClick={handleClick} className="navIcon" href="#"><ArrowDropDownCircleOutlined /></IconButton>
-                            <IconButton onClick={logout} className="navIcon" href="#"></IconButton>
+                           
 
                         </span>
                     </div>

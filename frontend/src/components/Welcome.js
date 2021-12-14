@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import NewPostModal from "./NewPostModal";
 import ErrorModal from "./ErrorModal";
 import LoginModal from "./LoginModal";
+import Typography from "@mui/material/Typography";
 const Welcome = ({loggedIn=false, user}) => {
 //testtttt
 
@@ -36,9 +37,9 @@ const Welcome = ({loggedIn=false, user}) => {
 
                 <div className="container">
                     <div className="intro">
-                        <h2 className="text-center">Welcome, {user.username}.</h2>
-                        <p className="text-center">Bloggit is a website where anyone is welcome to share their thoughts.<br/> Click
-                            below to make a new post.</p>
+                        <Typography variant='h4' className="text-center">Welcome, {user.username}.</Typography>
+                        <Typography variant='h6' className="text-center">Click
+                            below to make a new post.</Typography>
                     </div>
                     <div className="buttons"><a onClick={showNewPostModal} className="btn btn-primary" role="button"
                                                 href="#">new post</a></div>

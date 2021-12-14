@@ -5,13 +5,13 @@ import Footer from "./Footer";
 import React from "react";
 import Settings from "./Settings";
 
-const SettingsView = ({app}) => {
+const SettingsView = ({app,user}) => {
     return (
         <FadeIn transitionDuration={750}>
             <div>
 
                 <NavBar app={app} loggedIn={true} />
-                <Settings app={app} />
+                <Settings user={user} app={app} />
                 <Footer />
             </div>
         </FadeIn>

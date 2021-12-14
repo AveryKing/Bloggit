@@ -12,7 +12,8 @@
 @media (min-width:768px) {
   .navigation-clean-button {
     padding-top: 1rem;
-    padding-bottom: 1rem;
+
+    box-shadow: 0.1px 0.1px;
   }
 }
 
