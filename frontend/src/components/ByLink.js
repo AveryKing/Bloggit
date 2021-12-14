@@ -5,7 +5,7 @@ import {useState} from "react";
 
 const ByLink = ({id,click}) => {
 
-    const [name, setName] = useState('')
+    const [name, setName] = useState('loading...')
 
         userService.getUser(id)
             .then(response => {

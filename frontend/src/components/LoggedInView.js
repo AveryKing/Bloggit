@@ -12,15 +12,16 @@ const LoggedInView = ({user,app}) => {
 
 
     return (
-        <FadeIn transitionDuration={750}>
+
             <div>
 
                 <NavBar app={app} loggedIn={true} />
-
+                <FadeIn >
                 <HomePage app={app} loggedIn={true} user={user} />
+                </FadeIn>
                 <Footer />
             </div>
-        </FadeIn>
+
 
 )
 }

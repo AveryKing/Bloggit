@@ -15,6 +15,9 @@ import {useEffect, useState} from "react";
 
 const Profile = ({app,userId,self=false}) => {
 
+    if(userId === JSON.parse(localStorage.getItem('bloggitUser')).userId) {
+        self = true
+    }
     const [user, setUser] = useState(null)
 
     useEffect(() => {
@@ -82,9 +85,65 @@ const Profile = ({app,userId,self=false}) => {
 
         )
     }
+    /*****
+     *
+     *
+     * OWN PROFILE
+     * !!!
+     *
+     *
+     */
     else {
         return (
-            <div>self!!!</div>
+
+            <div className='container-fluid'>
+                <center>
+
+                    <Box xs={12}
+                         sx={{
+                             alignItems: 'center',
+                             justifyContent: 'space-around',
+
+                             zIndex: -1,
+                             height: 200,
+                             borderRadius: 4,
+                             backgroundColor: '#737776',
+                             '&:hover': {
+                                 backgroundColor: '#7F807F',
+                                 opacity: 1,
+                             },
+                         }}
+                    >
+                        <br/> <br/>
+                        <Avatar
+                            alt={user ? user.username : null}
+                            src="/static/images/avatar/1.jpg"
+                            sx={{width: 100, height: 100}}
+                        />
+
+                        <div>
+                            <Typography variant="h5" color="white">
+                                {user ? user.username : null}
+
+                            </Typography>
+                            <ButtonGroup sx={{color: 'secondary', position: 'relative', left: '200px', bottom: '32px'}}
+                                         variant="contained" aria-label="outlined primary button group">
+                                <Button variant='contained' size='small' color='secondary'>EDIT YOUR PROFILE</Button>
+
+                                <Button size='small' color='secondary'><KeyboardArrowDown/></Button>
+                            </ButtonGroup>
+                        </div>
+
+
+                    </Box>
+
+                </center>
+
+
+                <PostGrid2 app={app} id={userId} type='profile'/>
+
+
+            </div>
         )
     }
 }

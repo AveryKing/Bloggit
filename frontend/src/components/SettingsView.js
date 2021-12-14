@@ -7,14 +7,16 @@ import Settings from "./Settings";
 
 const SettingsView = ({app,user}) => {
     return (
-        <FadeIn transitionDuration={750}>
+
             <div>
 
                 <NavBar app={app} loggedIn={true} />
+                <FadeIn >
                 <Settings user={user} app={app} />
+                </FadeIn>
                 <Footer />
             </div>
-        </FadeIn>
+
     )
 }
 

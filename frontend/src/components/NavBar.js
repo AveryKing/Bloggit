@@ -59,7 +59,8 @@ const NavBar = ({loggedIn = false, app}) => {
     const openMyProfile = () => {
 
         handleClose()
-        app('profile')
+
+        app('profile',JSON.parse(localStorage.getItem('bloggitUser')).userId)
     }
 
     const openSettings = () => {

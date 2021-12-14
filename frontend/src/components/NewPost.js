@@ -32,7 +32,7 @@ const NewPost = ({handleClose,user}) => {
         title.length >= 5 ? setTitleError(false) : setTitleError(true)
 
         if(content.length >= 150 && title.length >=5) {
-            addPost(content,title,anonymous)
+            addPost(content,title,'anonymous')
         }
     }
 

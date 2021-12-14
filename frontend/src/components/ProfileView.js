@@ -7,14 +7,16 @@ import Profile from './Profile'
 
 const ProfileView = ({user,app,id}) => {
     return (
-        <FadeIn transitionDuration={750}>
+
             <div>
 
                 <NavBar app={app} loggedIn={true} />
+                <FadeIn >
                 <Profile app={app} userId={id} />
+                </FadeIn>
                 <Footer />
             </div>
-        </FadeIn>
+
     )
 }
 
