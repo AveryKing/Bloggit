@@ -4,7 +4,7 @@ import Post from "./Post";
 import ReactDOM from "react-dom";
 import FadeIn from "react-fade-in";
 import postService from "../services/posts";
-
+import './settings.css'
 const PostModal = ({id}) => {
     const [open,setOpen] = useState(true)
     const [title, setTitle] = useState("")
@@ -25,7 +25,7 @@ const PostModal = ({id}) => {
         borderRadius:'8px',
         transform: 'translate(-50%, -50%)',
         maxWidth: '70%',
-
+        overflowX: 'scroll',
         maxHeight:'80%',
         bgcolor: 'background.paper',
         border: '1px solid #000',

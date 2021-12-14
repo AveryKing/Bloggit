@@ -27,7 +27,7 @@ const Welcome = ({loggedIn=false, user}) => {
                         <p className="text-center">Bloggit is a website where anyone is welcome to share their thoughts.<br/> Click below to create an account!</p>
                     </div>
                     <div className="buttons">
-                        <Button color='primary' onClick={showNewPostModal} size='large' variant='contained'>
+                        <Button color='secondary' onClick={showNewPostModal} size='large' variant='contained'>
                             Sign Up
                         </Button></div>
                 </div>

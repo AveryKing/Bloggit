@@ -14,11 +14,12 @@ import {
     NotificationsOutlined, PersonOutlined,
     SettingsOutlined
 } from "@mui/icons-material";
-import {IconButton} from "@mui/material";
+import {ButtonGroup, IconButton} from "@mui/material";
 import App from "../App";
 import Snackbar from "./Snackbar";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import Button from "@mui/material/Button";
 const NavBar = ({loggedIn = false, app}) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -71,7 +72,7 @@ const NavBar = ({loggedIn = false, app}) => {
         return (
 
             <nav className="navbar navbar-light navbar-expand-lg navigation-clean-button">
-                <div className="container"><a onClick={renderApp} className="navbar-brand" href="#">Bloggit</a>
+                <div className="container"><a onClick={renderApp} className="navbar-brand" href="#"><img src='http://localhost:3001/img/logo4.png' width='150px' /></a>
                     <button data-bs-toggle="collapse" className="navbar-toggler" data-bs-target="#navcol-1"><span
                         className="visually-hidden">Toggle navigation</span><span className="navbar-toggler-icon"></span>
                     </button>
@@ -82,8 +83,12 @@ const NavBar = ({loggedIn = false, app}) => {
                             <li className="nav-item"><a className="nav-link" href="#">About</a></li>
 
                         </ul>
-                        <span id="nav-buttons-nouser" className="navbar-text actions"> <a onClick={openLogin} className="login" href="#">Log In</a><a
-                            onClick={openSignUp} className="btn btn-light action-button" role="button" href="#">Sign Up</a></span>
+                        <span id="nav-buttons-nouser" className="navbar-text actions">
+
+                            <Button onClick={openLogin} variant='contained' color='primary'>Login</Button>&emsp;
+                            <Button onClick={openSignUp} variant='contained' color='primary'>Sign Up</Button>
+
+                        </span>
                     </div>
                 </div>
             </nav>
@@ -107,7 +112,7 @@ const NavBar = ({loggedIn = false, app}) => {
             </Menu>
             <nav className="navbar navbar-light navbar-expand-lg navigation-clean-button">
 
-                <div className="container"><a onClick={renderApp} className="navbar-brand" href="#">Bloggit</a>
+                <div className="container"><a onClick={renderApp} className="navbar-brand" href="#"><img src='http://localhost:3001/img/logo4.png' width='150px' /></a>
                     <button data-bs-toggle="collapse" className="navbar-toggler" data-bs-target="#navcol-1"><span
                         className="visually-hidden">Toggle navigation</span><span className="navbar-toggler-icon"></span>
                     </button>
