@@ -8,9 +8,21 @@ import Card from "@mui/material/Card";
 import PostPreview from "./PostPreview";
 import ProfilePost from "./ProfilePost";
 import PostGrid2 from "./PostGrid2";
-import * as React from "react";
+import userService from '../services/users'
 
-const Profile = ({user,self=false}) => {
+import * as React from "react";
+import {useEffect, useState} from "react";
+
+const Profile = ({app,userId,self=false}) => {
+
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        userService.getUser(userId).then(user => {
+            setUser(user)
+           console.log(user)
+        })
+    },[])
 
     if(!self) {
         return (
@@ -36,14 +48,14 @@ const Profile = ({user,self=false}) => {
                             >
                                 <br/> <br/>
                                 <Avatar
-                                    alt="Avery King"
+                                    alt={user ? user.username : null}
                                     src="/static/images/avatar/1.jpg"
                                     sx={{width: 100, height: 100}}
                                 />
 
                                 <div >
                                     <Typography variant="h5" color="white">
-                                        Avery King
+                                        {user ? user.username : null}
 
                                     </Typography>
                                     <ButtonGroup sx={{color:'secondary', position:'relative',left:'200px',bottom:'32px'}} variant="contained" aria-label="outlined primary button group">
@@ -60,7 +72,7 @@ const Profile = ({user,self=false}) => {
 </center>
 
 
-    <PostGrid2 type='profile'/>
+    <PostGrid2 app={app} id={userId} type='profile'/>
 
 
 

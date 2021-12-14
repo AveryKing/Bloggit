@@ -5,7 +5,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import NewPostModal from "./NewPostModal";
 
-const HomePage = ({loggedIn, user}) => {
+const HomePage = ({loggedIn, user, app}) => {
 
     const showNewPostModal = () => {
         ReactDOM.render(<NewPostModal/>, document.getElementById("modal"))
@@ -15,14 +15,14 @@ const HomePage = ({loggedIn, user}) => {
         return (
             <div>
                 <Welcome />
-                <PostGrid2 />
+                <PostGrid2 app={app}/>
             </div>
         )
     } else {
         return (
             <div>
                 <Welcome loggedIn={true} user={user}/>
-                <PostGrid2 />
+                <PostGrid2 app={app} />
             </div>
         )
     }

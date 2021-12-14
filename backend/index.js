@@ -44,7 +44,7 @@ app.post('/api/posts', async (request,response) => {
     //const user = await User.findById(body.userId)
 
     const token = getTokenFrom(request)
-    console.log('TOKEN: ' + token)
+
     let decodedToken = undefined
     try {
         decodedToken = jwt.verify(token, SECRET)
@@ -55,7 +55,6 @@ app.post('/api/posts', async (request,response) => {
         })//what a great idea!!!
     }
 
-    console.log('DECODED TOKEN: ' + decodedToken)
 
     if(!token || !decodedToken.id) {
         return response.status(401).json({

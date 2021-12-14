@@ -21,5 +21,15 @@ usersRouter.post('/', async (request, response) => {
     response.json(savedUser)
 })
 
+usersRouter.get('/:id', async (request,response) => {
+    const id = request.params.id
+    console.log(id)
+     await User.findById(id).then(user => {
+        response.json(user)
+    }).catch(err => {
+        response.json({error:'user not found'})
+     })
+})
+
 module.exports = usersRouter
 

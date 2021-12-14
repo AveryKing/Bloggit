@@ -8,12 +8,15 @@ import Card from "@mui/material/Card";
 import PostPreviewBody from "./PostPreviewBody";
 import {Link} from "@mui/material";
 import {useEffect, useState} from "react";
+import userService from '../services/users'
 import postService from "../services/posts";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ReactDOM from "react-dom";
+import ByLink from './ByLink'
 import PostModal from "./PostModal";
 import ViewFullPostButton from "./ViewFullPostButton";
+import ProfileGridItem from "./ProfileGridItem";
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -23,7 +26,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-export default function ColumnsGrid({type='main'}) {
+export default function ColumnsGrid({type='main',app, id}) {
+
 
 
     const [posts, setPosts] = useState([])
@@ -35,22 +39,26 @@ export default function ColumnsGrid({type='main'}) {
             })
     }, [])
     if(type === 'main') {
+
         return (
             <div>
 
                 <Paper  variant='contained'>
                   <center>
                         <Grid container marginLeft={1} marginRight={1}justifyContent='space-evenly'>
+
                             {posts.map(post => (
+
                                 <Grid item key={post.id} xs={12} md={5} lg={5}>
+
                                     <Card sx={{marginBottom:'20px'}}>
                                         <div className="card-header">
                                             <h5 className="mb-0">{post.title}</h5>
-                                            <h6 className="mb-0">By {post.author}</h6>
+                                            <h6 className="mb-0">By<ByLink id={post.user} click={()=>{ app('profile',post.user)}}/> </h6>
                                         </div>
                                         <div className="card-body">
 
-                                            {post.content.substr(0,300)}....
+                                            {post.content.substr(0,150)}
                                             <br />
                                             <ViewFullPostButton id={post.id} />
                                         </div>  </Card>
@@ -66,6 +74,7 @@ export default function ColumnsGrid({type='main'}) {
             </div>
         ) }
         else {
+            const usersPosts = posts.filter(x => x.user === id)
             return (
                 <div>
 
@@ -73,12 +82,12 @@ export default function ColumnsGrid({type='main'}) {
                         <Typography variant='h5' sx={{marginLeft:'10%',marginTop:'20px',marginBottom:'5px'}}>Posts</Typography>
                         <center>
                             <Grid container marginLeft={1} marginRight={1}justifyContent='space-evenly'>
-                                {posts.map(post => (
+                                {usersPosts.map(post => (
                                     <Grid item key={post.id} xs={12} md={5} lg={5}>
                                         <Card sx={{marginBottom:'20px'}}>
                                             <div className="card-header">
                                                 <h5 className="mb-0">{post.title}</h5>
-                                                <h6 className="mb-0">By {post.author}</h6>
+                                                <h6 className="mb-0">By <ByLink id={post.user}  click={()=>{ app('profile',post.user)}}/></h6>
                                             </div>
                                             <div className="card-body">
 
@@ -90,6 +99,7 @@ export default function ColumnsGrid({type='main'}) {
                                     </Grid>
 
                                 ))}
+
 
                             </Grid>
 

@@ -16,8 +16,12 @@ import SettingsView from './components/SettingsView'
 const App = ({  userObj= null}) => {
     const [user, setUser] = useState(null)
     const [mode, setMode] = useState('default')
+    const [profile, setProfile] = useState(null)
+    const updateAppMode = (newMode,profileToVisit) => {
+        setProfile(profileToVisit)
+        setMode(newMode)
 
-    const updateAppMode = (newMode) => setMode(newMode)
+    }
 
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('bloggitUser')
@@ -28,6 +32,8 @@ const App = ({  userObj= null}) => {
             setMode('loggedIn')
 
         }
+
+
     }, [])
     if(mode === 'loading') {
         return (
@@ -47,7 +53,7 @@ const App = ({  userObj= null}) => {
         )
     } else if(mode === 'profile') {
         return (
-            <ProfileView user={user} app={updateAppMode}/>
+            <ProfileView id={profile} user={user} app={updateAppMode}/>
         )
     } else if(mode === 'settings') {
         return (

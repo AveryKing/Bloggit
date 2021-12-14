@@ -5,13 +5,13 @@ import Footer from "./Footer";
 import React from "react";
 import Profile from './Profile'
 
-const ProfileView = ({user,app}) => {
+const ProfileView = ({user,app,id}) => {
     return (
         <FadeIn transitionDuration={750}>
             <div>
 
                 <NavBar app={app} loggedIn={true} />
-                <Profile app={app} user='id' />
+                <Profile app={app} userId={id} />
                 <Footer />
             </div>
         </FadeIn>

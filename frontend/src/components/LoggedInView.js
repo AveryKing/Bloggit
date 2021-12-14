@@ -17,7 +17,7 @@ const LoggedInView = ({user,app}) => {
 
                 <NavBar app={app} loggedIn={true} />
 
-                <HomePage loggedIn={true} user={user} />
+                <HomePage app={app} loggedIn={true} user={user} />
                 <Footer />
             </div>
         </FadeIn>

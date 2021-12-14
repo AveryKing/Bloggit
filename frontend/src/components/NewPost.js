@@ -20,11 +20,11 @@ const NewPost = ({handleClose,user}) => {
         let content = document.getElementById("postBody").value
         let title = document.getElementById("postTitle").value
         let author
-
+        let anonymous
         if(document.getElementById("anonymous").checked) {
-            author = "Anonymous"
+            anonymous = true
         } else {
-            author = 'lolol'
+            anonymous = false
          //   author = document.getElementById("name").value
         }
 
@@ -32,7 +32,7 @@ const NewPost = ({handleClose,user}) => {
         title.length >= 5 ? setTitleError(false) : setTitleError(true)
 
         if(content.length >= 150 && title.length >=5) {
-            addPost(content,title,author)
+            addPost(content,title,anonymous)
         }
     }
 
