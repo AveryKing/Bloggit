@@ -7,7 +7,7 @@ import ReactDOM from "react-dom";
 import NewPostModal from "./NewPostModal";
 import ErrorModal from "./ErrorModal";
 
-const LoggedInView = ({user}) => {
+const LoggedInView = ({user,app}) => {
 
 
 
@@ -15,7 +15,7 @@ const LoggedInView = ({user}) => {
         <FadeIn transitionDuration={750}>
             <div>
 
-                <NavBar loggedIn={true} />
+                <NavBar app={app} loggedIn={true} />
 
                 <HomePage loggedIn={true} user={user} />
                 <Footer />

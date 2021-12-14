@@ -11,17 +11,20 @@ import OpenChatButton from "./components/OpenChatButton";
 import DefaultView from "./components/DefaultView";
 import LoggedInView from './components/LoggedInView'
 import postService from './services/posts'
+import ProfileView from "./components/ProfileView";
 
 const App = ({  userObj= null}) => {
     const [user, setUser] = useState(null)
     const [mode, setMode] = useState('default')
+
+    const updateAppMode = (newMode) => setMode(newMode)
+
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('bloggitUser')
         if(loggedUserJSON && mode != 'loading') {
             const user = JSON.parse(loggedUserJSON)
             setUser(user)
             postService.setToken(user.token)
-
             setMode('loggedIn')
 
         }
@@ -34,12 +37,21 @@ const App = ({  userObj= null}) => {
     } else if(mode === 'default') {
 
         return (
-                <DefaultView />
+                <DefaultView app={updateAppMode}/>
         )
+        //Homescreen for logged in
     } else if(mode === 'loggedIn') {
 
         return (
-            <LoggedInView user={user} />
+            <LoggedInView user={user} app={updateAppMode}/>
+        )
+    } else if(mode === 'profile') {
+        return (
+            <ProfileView user={user} app={updateAppMode}/>
+        )
+    } else if(mode === 'settings') {
+        return (
+            <SettingsView user={user} app={updateAppMode} />
         )
     }
 

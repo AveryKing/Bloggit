@@ -19,7 +19,7 @@ import App from "../App";
 import Snackbar from "./Snackbar";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-const NavBar = ({loggedIn = false}) => {
+const NavBar = ({loggedIn = false, app}) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -48,6 +48,17 @@ const NavBar = ({loggedIn = false}) => {
         ReactDOM.render(<Snackbar type="success" text={"You have been logged out."} />, document.getElementById('snackbar'))
 
 
+    }
+
+    const openMyProfile = () => {
+
+        handleClose()
+        app('profile')
+    }
+
+    const openSettings = () => {
+        handleClose()
+        app('settings')
     }
 
     if(!loggedIn) {
@@ -84,7 +95,7 @@ const NavBar = ({loggedIn = false}) => {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose}><PersonOutlined /> &nbsp;Profile</MenuItem>
+                <MenuItem onClick={openMyProfile}><PersonOutlined /> &nbsp;Profile</MenuItem>
                 <MenuItem onClick={handleClose}><SettingsOutlined /> &nbsp;Settings</MenuItem>
                 <MenuItem onClick={handleClose}><LogoutOutlined /> &nbsp;Logout</MenuItem>
             </Menu>
