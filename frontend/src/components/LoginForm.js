@@ -7,6 +7,7 @@ import Snackbar from "./Snackbar";
 import UI from '../utils/UI'
 import App from "../App";
 import postService from '../services/posts'
+import LoadingView from "./LoadingView";
 
 const LoginForm = () => {
 
@@ -41,12 +42,11 @@ const LoginForm = () => {
             ReactDOM.render(<Snackbar type="success" text={"You have been logged in."} />, document.getElementById('snackbar'))
 
             ReactDOM.unmountComponentAtNode(document.getElementById("root"))
-            ReactDOM.render(<App mode="loading" />, document.getElementById('root'))
-            setTimeout(()=>{
-                ReactDOM.unmountComponentAtNode(document.getElementById('root'))
-                ReactDOM.render(<App userObj={user} mode='loggedIn' />, document.getElementById('root'))
+
+                ReactDOM.render(<App /> , document.getElementById('root'))
+
             //    ReactDOM.render(<App mode="default" userObj={user} />, document.getElementById('root'))
-            },1500)
+
             return
         } catch (exception) {
             return ReactDOM.render(<Snackbar type="error" text={"The credentials you entered are invalid."} />, document.getElementById('snackbar'))

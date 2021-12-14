@@ -6,6 +6,7 @@ import LoginModal from './LoginModal'
 import Badge from '@mui/material/Badge';
 
 import {
+    ArrowDropDownCircle, ArrowDropDownCircleOutlined,
     Logout,
     LogoutOutlined,
     MailOutlined,
@@ -14,6 +15,8 @@ import {
     SettingsOutlined
 } from "@mui/icons-material";
 import {IconButton} from "@mui/material";
+import App from "../App";
+import Snackbar from "./Snackbar";
 const NavBar = ({loggedIn = false}) => {
     const openLogin = () => {
         ReactDOM.render(<LoginModal display="1" />, document.getElementById("modal"))
@@ -21,6 +24,17 @@ const NavBar = ({loggedIn = false}) => {
 
    const openSignUp = () => {
         ReactDOM.render(<LoginModal display="2" />, document.getElementById("modal"))
+    }
+
+    const logout =  () => {
+
+         window.localStorage.removeItem('bloggitUser')
+        ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+        ReactDOM.render(<App />, document.getElementById('root'))
+        ReactDOM.unmountComponentAtNode(document.getElementById('snackbar'))
+        ReactDOM.render(<Snackbar type="success" text={"You have been logged out."} />, document.getElementById('snackbar'))
+
+
     }
 
     if(!loggedIn) {
@@ -63,8 +77,8 @@ const NavBar = ({loggedIn = false}) => {
                         <span className="navbar-text actions">
                             <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={2}><MailOutlined /></Badge></IconButton>
                             <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={4}><NotificationsOutlined /></Badge></IconButton>
-                            <IconButton className="navIcon" href="#"><SettingsOutlined /></IconButton>
-                            <IconButton className="navIcon" href="#"><LogoutOutlined /></IconButton>
+                            <IconButton className="navIcon" href="#"><ArrowDropDownCircleOutlined /></IconButton>
+                            <IconButton onClick={logout} className="navIcon" href="#"><LogoutOutlined /></IconButton>
 
                         </span>
                     </div>

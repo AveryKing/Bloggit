@@ -10,10 +10,22 @@ import ReactDOM from "react-dom";
 import OpenChatButton from "./components/OpenChatButton";
 import DefaultView from "./components/DefaultView";
 import LoggedInView from './components/LoggedInView'
+import postService from './services/posts'
 
-const App = ({mode = 'default', settings = {}, userObj= null}) => {
+const App = ({  userObj= null}) => {
     const [user, setUser] = useState(null)
+    const [mode, setMode] = useState('default')
+    useEffect(() => {
+        const loggedUserJSON = window.localStorage.getItem('bloggitUser')
+        if(loggedUserJSON && mode != 'loading') {
+            const user = JSON.parse(loggedUserJSON)
+            setUser(user)
+            postService.setToken(user.token)
 
+            setMode('loggedIn')
+
+        }
+    }, [])
     if(mode === 'loading') {
         return (
             <LoadingView />
@@ -27,7 +39,7 @@ const App = ({mode = 'default', settings = {}, userObj= null}) => {
     } else if(mode === 'loggedIn') {
 
         return (
-            <LoggedInView user={userObj} />
+            <LoggedInView user={user} />
         )
     }
 
