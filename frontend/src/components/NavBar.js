@@ -96,7 +96,7 @@ const NavBar = ({loggedIn = false, app}) => {
                 }}
             >
                 <MenuItem onClick={openMyProfile}><PersonOutlined /> &nbsp;Profile</MenuItem>
-                <MenuItem onClick={handleClose}><SettingsOutlined /> &nbsp;Settings</MenuItem>
+                <MenuItem onClick={openSettings}><SettingsOutlined /> &nbsp;Settings</MenuItem>
                 <MenuItem onClick={handleClose}><LogoutOutlined /> &nbsp;Logout</MenuItem>
             </Menu>
             <nav className="navbar navbar-light navbar-expand-lg navigation-clean-button">

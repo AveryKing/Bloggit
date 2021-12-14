@@ -12,7 +12,7 @@ import DefaultView from "./components/DefaultView";
 import LoggedInView from './components/LoggedInView'
 import postService from './services/posts'
 import ProfileView from "./components/ProfileView";
-
+import SettingsView from './components/SettingsView'
 const App = ({  userObj= null}) => {
     const [user, setUser] = useState(null)
     const [mode, setMode] = useState('default')

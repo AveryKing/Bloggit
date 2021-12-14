@@ -1,21 +1,21 @@
 import FadeIn from "react-fade-in";
 import NavBar from "./NavBar";
-import HomePage from "./HomePage";
+import Profile from "./Profile";
 import Footer from "./Footer";
 import React from "react";
-import Profile from './Profile'
+import Settings from "./Settings";
 
-const ProfileView = ({user,app}) => {
+const SettingsView = ({app}) => {
     return (
         <FadeIn transitionDuration={750}>
             <div>
 
                 <NavBar app={app} loggedIn={true} />
-                <Profile app={app} user='id' />
+                <Settings app={app} />
                 <Footer />
             </div>
         </FadeIn>
     )
 }
 
-export default ProfileView
+export default SettingsView
