@@ -23,7 +23,7 @@ usersRouter.post('/', async (request, response) => {
 
 usersRouter.get('/:id', async (request,response) => {
     const id = request.params.id
-    console.log(id)
+
      await User.findById(id).then(user => {
         response.json(user)
     }).catch(err => {

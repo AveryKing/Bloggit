@@ -5,14 +5,17 @@ const app = express()
 const jwt = require('jsonwebtoken')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
+const notificationsRouter = require('./controllers/notifications')
 const Post = require('./models/post')
 const User = require('./models/users')
 const SECRET = 'SEC)8woe3c9hrq8x58(pmq3+iyh$@k(+pk&5_n136a#s&95f6_y^@RET'
+const io = require('./socketio/main')
 app.use(express.static('build'))
 app.use(cors())
 app.use(express.json())
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/notifications', notificationsRouter)
 const middleware = require('./utils/middleware')
 app.use(middleware.errorHandler)
 
@@ -29,6 +32,7 @@ const getTokenFrom = request => {
 
 usersRouter.get('/', async (request,response) => {
     const users = await User.find({})
+
     response.json(users.map(u => u.toJSON()))
 })
 
