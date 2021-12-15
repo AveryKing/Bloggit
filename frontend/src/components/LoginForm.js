@@ -4,7 +4,6 @@ import FadeIn from "react-fade-in";
 import loginService from '../services/login'
 import ReactDOM from "react-dom";
 import Snackbar from "./Snackbar";
-import UI from '../utils/UI'
 import App from "../App";
 import postService from '../services/posts'
 import LoadingView from "./LoadingView";
