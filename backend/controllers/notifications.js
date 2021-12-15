@@ -4,7 +4,7 @@ const User = require('../models/users')
 notificationsRouter.get('/count/:user', async (request, response) => {
 
     await User.findById(request.params.user)
-        .then(user => response.json(user.notifications.length))
+        .then(user => response.json({count:user.notifications.length}))
         .catch(err => response.json({error:'invalid user'}))
 
 
@@ -20,12 +20,19 @@ notificationsRouter.post('/', async (request, response) => {
         userTo: request.body.userTo
     })
 
+    const user = await User.findById(request.body.userTo)
+
     await notification.save().then(notif => {
-        console.log(notif)
+
+       user.notifications = user.notifications.concat(notif.id)
+        user.save()
+       // console.log(notif)
         response.json(notif)
     }).catch(err => {
         console.log(err)
     })
+
+
 
 })
 module.exports = notificationsRouter

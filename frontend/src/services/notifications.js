@@ -16,7 +16,7 @@ const dispatch = (notification) => {
 
 const getNotificationCount = (userId) => {
     const request = axios.get(`${baseUrl}/count/${userId}`)
-    return request.then(response => response.data.notificationCount)
+    return request.then(response => response.data)
 }
 
 export default {

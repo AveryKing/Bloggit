@@ -36,10 +36,13 @@ const NavBar = ({loggedIn = false, app}) => {
 React.useEffect(() => {
 
     //TODO: add auth
-    notificationsService.getNotificationCount(JSON.parse(localStorage.getItem('bloggitUser')).userId)
-        .then(count => {
-            updateNotificationCount(count)
-        })
+    if(loggedIn) {
+        notificationsService.getNotificationCount(JSON.parse(localStorage.getItem('bloggitUser')).userId)
+            .then(response => {
+                updateNotificationCount(response.count)
+
+            })
+    }
 })
     const openLogin = () => {
         ReactDOM.render(<LoginModal display="1" />, document.getElementById("modal"))
