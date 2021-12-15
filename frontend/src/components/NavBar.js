@@ -4,6 +4,7 @@ import React from "react";
 import ErrorModal from "./ErrorModal";
 import LoginModal from './LoginModal'
 import Badge from '@mui/material/Badge';
+import notificationsService from '../services/notifications'
 
 import {
     ArrowDropDownCircle, ArrowDropDownCircleOutlined,
@@ -23,6 +24,7 @@ import Button from "@mui/material/Button";
 const NavBar = ({loggedIn = false, app}) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [notificationCount, updateNotificationCount] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -31,7 +33,14 @@ const NavBar = ({loggedIn = false, app}) => {
         setAnchorEl(null);
     };
 
+React.useEffect(() => {
 
+    //TODO: add auth
+    notificationsService.getNotificationCount(JSON.parse(localStorage.getItem('bloggitUser')).userId)
+        .then(count => {
+            updateNotificationCount(count)
+        })
+})
     const openLogin = () => {
         ReactDOM.render(<LoginModal display="1" />, document.getElementById("modal"))
     }
@@ -126,7 +135,7 @@ const NavBar = ({loggedIn = false, app}) => {
                         </ul>
                         <span className="navbar-text actions">
                             <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={null}><MailOutlined /></Badge></IconButton>
-                            <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={null}><NotificationsOutlined /></Badge></IconButton>
+                            <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={notificationCount}><NotificationsOutlined /></Badge></IconButton>
                             <IconButton onClick={handleClick} className="navIcon" href="#"><ArrowDropDownCircleOutlined /></IconButton>
                            
 
