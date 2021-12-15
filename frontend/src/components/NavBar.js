@@ -125,8 +125,8 @@ const NavBar = ({loggedIn = false, app}) => {
 
                         </ul>
                         <span className="navbar-text actions">
-                            <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={2}><MailOutlined /></Badge></IconButton>
-                            <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={4}><NotificationsOutlined /></Badge></IconButton>
+                            <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={null}><MailOutlined /></Badge></IconButton>
+                            <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={null}><NotificationsOutlined /></Badge></IconButton>
                             <IconButton onClick={handleClick} className="navIcon" href="#"><ArrowDropDownCircleOutlined /></IconButton>
                            
 

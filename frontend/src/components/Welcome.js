@@ -5,6 +5,7 @@ import ErrorModal from "./ErrorModal";
 import LoginModal from "./LoginModal";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import {TextField} from "@mui/material";
 const Welcome = ({loggedIn=false, user}) => {
 //testtttt
 
@@ -40,10 +41,21 @@ const Welcome = ({loggedIn=false, user}) => {
 
                 <div className="container">
                     <div className="intro">
-                        <Typography variant='h4' className="text-center">Welcome, {user.username}.</Typography>
-                        <Typography variant='h6' className="text-center">Click
-                            below to make a new post.</Typography>
+                        <center>
+                        <TextField
+                            id="filled-multiline-static"
+                            label="Write a new post..."
+                            multiline
+                            fullWidth
+                            borderRadius='50px'
+                            rows={4}
+
+                            variant="filled"
+                        />
+                        </center>
+
                     </div>
+
                     <div className="buttons">
                         <Button color='primary' onClick={showNewPostModal} size='large' variant='contained'>
                             New Post

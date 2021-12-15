@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Typography} from "@mui/material";
+import {TextField, Typography} from "@mui/material";
 import FadeIn from "react-fade-in";
 import loginService from '../services/login'
 import ReactDOM from "react-dom";
@@ -8,6 +8,7 @@ import UI from '../utils/UI'
 import App from "../App";
 import postService from '../services/posts'
 import LoadingView from "./LoadingView";
+import Button from "@mui/material/Button";
 
 const LoginForm = () => {
 
@@ -62,25 +63,27 @@ const LoginForm = () => {
                 <h2 className="visually-hidden">Login Form</h2>
 
                 <div className="illustration">
-                    <i className="fas fa-sign-in-alt" style={{width: "1", color: "rgb(71,109,244)", fontSize: "70px"}}/>
+                    <i className="fas fa-sign-in-alt" style={{width: "1", color: "#9c27b0", fontSize: "70px"}}/>
                 <center>
-                    <Typography style={{color:"#575757"}}variant="h4">Login</Typography>
+                    <Typography style={{color:"#575757"}}variant="h5">Login</Typography>
                 </center>
                 </div>
 
-                <div className="mb-3"><input className="form-control" id="uname" value={username} type="text" name="uname" placeholder="Username"
-                onChange={({target}) => setUsername(target.value)}/>
+                <div className="mb-3">
+                    <TextField fullWidth id="uname" label="Username" variant="filled" value={username}
+                               onChange={({target}) => setUsername(target.value)}/>
 
                 </div>
-                <div className="mb-3"><input className="form-control" id="password" value={password} type="password" name="password"
-                                             placeholder="Password"
-                onChange={({target}) => setPassword(target.value)}/>
+                <div className="mb-3"> <TextField fullWidth id="password" type="password" label="Password" variant="filled" value={password}
+                                                  onChange={({target}) => setPassword(target.value)}/>
 
                 </div>
                 <div className="mb-3">
-                    <button className="btn btn-primary d-block w-100" type="submit"
-                             style={{background: "rgb(71,109,244)"}}>Login
-                    </button>
+                    <Button fullWidth color='secondary' variant='contained'   type="submit">
+
+                        Login
+                    </Button>
+
                 </div>
                 <a className="forgot" href="#">Don't have an account? Click here to sign up!</a>
             </form>

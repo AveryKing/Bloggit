@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import ReactDOM from "react-dom";
-import {Typography} from "@mui/material";
+import {TextField, Typography} from "@mui/material";
 import userService from '../services/users'
 import Snackbar from './Snackbar'
 import NUE from './NewUserExperience'
 import FadeIn from "react-fade-in";
+import Button from "@mui/material/Button";
 const SignUpForm = ({close}) => {
 
     const [usernameError, setUsernameError] = useState(false)
@@ -48,22 +49,25 @@ const SignUpForm = ({close}) => {
                 <h2 className="visually-hidden">Login Form</h2>
 
                 <div className="illustration">
-                    <i className="fas fa-user-plus" style={{width: "1", color: "rgb(71,109,244)", fontSize: "70px"}}/>
+
+                    <i className="fas fa-user-plus" style={{width: "1", color: "#9c27b0", fontSize: "70px"}}/>
                     <center>
-                        <Typography style={{color:"#575757"}}variant="h4">Sign Up</Typography>
+                        <Typography style={{color:"#575757"}}variant="h5">Sign Up</Typography>
                     </center>
                 </div>
-                <div className="mb-3"><input className="form-control" id="uname" type="text" name="uname" placeholder="Username" />
+
+                <div className="mb-3"> <TextField fullWidth id="uname" label="Username" variant="filled"
+                                             />
                     {usernameError ? <small className="form-text text-danger">Your username must be at least 4 characters</small> : null}
                 </div>
-                <div className="mb-3"><input className="form-control" id="password" type="text" name="password"
-                                             placeholder="Password" />
+                <div className="mb-3"><TextField fullWidth id="password" label="Password" variant="filled" type="password"
+                />
                     {passwordError ? <small className="form-text text-danger">Your password must be at least 6 characters</small> : null}
                 </div>
                 <div className="mb-3">
-                    <button className="btn btn-primary d-block w-100" type="submit"
-                            style={{background: "rgb(71,109,244)"}}>Sign Up
-                    </button>
+                    <Button fullWidth color='secondary' variant='contained' type="submit"
+                            style={{background: "#9c27b0"}}>Sign Up
+                    </Button>
                 </div>
                 <a className="forgot" href="#">Already have an account? Click here to login!</a>
             </form>

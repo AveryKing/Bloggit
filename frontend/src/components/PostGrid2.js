@@ -43,7 +43,8 @@ export default function ColumnsGrid({type='main',app, id}) {
         return (
             <div>
 
-                <Paper  variant='contained'>
+                <Paper  elevation={2} variant='elevation'>
+                    <Typography variant='h5' sx={{marginLeft:'10%',marginTop:'20px',marginBottom:'5px'}}>Recent Posts</Typography>
                   <center>
                         <Grid container marginLeft={1} marginRight={1}justifyContent='space-evenly'>
 
