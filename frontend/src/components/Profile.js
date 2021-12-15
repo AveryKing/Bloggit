@@ -20,13 +20,20 @@ const Profile = ({app,userId,self=false}) => {
         self = true
     }
     const [user, setUser] = useState(null)
-
+    /** Friend Status:
+     * 0 - Not added
+     * 1 - Request pending
+     * 2 - Friends
+     * 3 - Request denied
+     */
+    const [friendStatus, setFriendStatus] = useState(1)
     useEffect(() => {
         userService.getUser(userId).then(user => {
             setUser(user)
            console.log(user)
         })
     },[])
+
 
     const sendFriendRequest = () => {
 
