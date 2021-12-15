@@ -9,6 +9,7 @@ import PostPreview from "./PostPreview";
 import ProfilePost from "./ProfilePost";
 import PostGrid2 from "./PostGrid2";
 import userService from '../services/users'
+import notificationService from '../services/notifications'
 
 import * as React from "react";
 import {useEffect, useState} from "react";
@@ -27,6 +28,17 @@ const Profile = ({app,userId,self=false}) => {
         })
     },[])
 
+    const sendFriendRequest = () => {
+
+        const notification = {
+            userFrom: JSON.parse(localStorage.getItem('bloggitUser')).userId,
+            userTo: userId,
+            notificationType: 'friendRequest'
+
+        }
+        notificationService.dispatch(notification)
+
+    }
     if(!self) {
         return (
 
@@ -62,7 +74,7 @@ const Profile = ({app,userId,self=false}) => {
 
                                     </Typography>
                                     <ButtonGroup sx={{color:'secondary', position:'relative',left:'200px',bottom:'32px'}} variant="contained" aria-label="outlined primary button group">
-                                        <Button variant='contained' size='small'  color='secondary'>Add friend</Button>
+                                        <Button variant='contained' size='small'  color='secondary' onClick={sendFriendRequest}>Add friend</Button>
                                         <Button variant='contained' size='small' color='secondary'>Message</Button>
                                         <Button size='small' color='secondary'><KeyboardArrowDown /></Button>
                                     </ButtonGroup>
