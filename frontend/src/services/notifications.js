@@ -9,12 +9,16 @@ const getAll = () => {
 }
 */
 const dispatch = (notification) => {
-
-    alert('dispatched')
     const request = axios.post(baseUrl, notification)
     return request.then(response => response.data)
 
 }
+
+const getNotificationCount = (userId) => {
+    const request = axios.get(`${baseUrl}/count/${userId}`)
+    return request.then(response => response.data.notificationCount)
+}
+
 export default {
-    dispatch
+    dispatch,getNotificationCount
 }
