@@ -20,12 +20,13 @@ const getNotifications = (userId) => {
 }
 
 const acceptRequest = (notificationId) => {
-    const request = axios.post(`${baseUrl}/accept/${notificationId}`)
+
+    const request = axios.post(`${baseUrl}/accept`, {id: notificationId})
     return request.then(response => response.data)
 }
 
 const declineRequest = (notificationId) => {
-    const request = axios.post(`${baseUrl}/decline/${notificationId}`)
+    const request = axios.post(`${baseUrl}/decline`, {notificationId: notificationId})
     return request.then(response => response.data)
 }
 
