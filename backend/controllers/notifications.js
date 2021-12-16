@@ -28,7 +28,7 @@ notificationsRouter.post('/', async (request, response) => {
 
     let notificationMessage
     await User.findById(request.body.userFrom).then(user => {
-            notificationMessage = `${user.username} has sent you a friend request.`
+            notificationMessage = `${user.username} sent you a friend request.`
     })
 
 
