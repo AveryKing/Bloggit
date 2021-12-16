@@ -21,7 +21,13 @@ const Profile = ({app,userId,self=false}) => {
     }
     const [user, setUser] = useState(null)
 
-    const [friendStatus, setFriendStatus] = useState(false)
+    /**
+     * Friend Statuses:
+     * 0 - Not added
+     * 1 - Pending
+     * 2 - Friends
+     */
+    const [friendStatus, setFriendStatus] = useState(null)
 
 
     useEffect(() => {
@@ -35,9 +41,21 @@ const Profile = ({app,userId,self=false}) => {
         userService.getFriends(JSON.parse(localStorage.getItem('bloggitUser')).userId)
             .then(friends => {
                 if(friends.includes(userId))
-                    setFriendStatus(true)
-                else
-                    setFriendStatus(false)
+                    //User is a friend
+                    setFriendStatus(2)
+                else {
+                    userService.getOutgoingFriendRequests(JSON.parse(localStorage.getItem('bloggitUser')).userId)
+                        .then(outgoingFriendRequests => {
+                            if(outgoingFriendRequests.includes(userId)) {
+                                //User not a friend, no request pending
+                                setFriendStatus(0)
+                            } else {
+                                //Friend request is currently pending
+                                setFriendStatus(1)
+                            }
+                    })
+                }
+
             })
     })
 
@@ -49,9 +67,15 @@ const Profile = ({app,userId,self=false}) => {
             notificationType: 'friendRequest'
 
         }
+
         notificationService.dispatch(notification)
 
     }
+
+    const removeFriend = () => {
+        alert('This feature is under development')
+    }
+
     if(!self) {
         return (
 
@@ -88,7 +112,7 @@ const Profile = ({app,userId,self=false}) => {
                                     </Typography>
                                     <ButtonGroup  sx={{color:'primary', position:'relative',left:'200px',bottom:'32px'}} variant="contained" aria-label="outlined primary button group">
                                         {!friendStatus ? <Button variant='contained' size='small'  color='secondary' onClick={sendFriendRequest}>Add friend</Button>
-                                            : <Button variant='contained' size='small'  color='secondary' onClick={()=>{alert('This feature is under development')}}>Cancel Friend Request</Button> }
+                                            : <Button variant='contained' size='small'  color='secondary' onClick={removeFriend}>remove friend</Button> }
                                     <Button variant='contained' size='small' color='secondary'>Message</Button>
                                         <Button size='small' color='secondary'><KeyboardArrowDown /></Button>
                                     </ButtonGroup>
