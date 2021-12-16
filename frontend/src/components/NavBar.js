@@ -25,7 +25,9 @@ const NavBar = ({loggedIn = false, app}) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [anchorEl2, setAnchorEl2] = React.useState(null);
-    const [notificationCount, updateNotificationCount] = React.useState(null);
+
+    const [notifications, setNotifications] = React.useState([])
+    const [notificationCount, updateNotificationCount] = React.useState(notifications.length);
     const open = Boolean(anchorEl);
     const notifsOpen = Boolean(anchorEl2)
     const handleClick = (event) => {
@@ -41,9 +43,26 @@ const NavBar = ({loggedIn = false, app}) => {
         setAnchorEl2(null);
     };
 
+ React.useEffect(() => {
+     if(loggedIn) {
+         notificationsService.getNotifications(JSON.parse(localStorage.getItem('bloggitUser')).userId)
+             .then(response => {
+
+                 response.forEach(notification => {
+
+                     setNotifications([...notifications].concat(notification))
+
+                 })
+
+
+             })
+     }
+
+ },[])
+
 React.useEffect(() => {
 
-    //TODO: add auth
+
     if(loggedIn) {
         notificationsService.getNotificationCount(JSON.parse(localStorage.getItem('bloggitUser')).userId)
             .then(response => {
@@ -51,7 +70,7 @@ React.useEffect(() => {
 
             })
     }
-})
+},[])
     const openLogin = () => {
         ReactDOM.render(<LoginModal display="1" />, document.getElementById("modal"))
     }
@@ -116,8 +135,11 @@ React.useEffect(() => {
 
         )
     } else {
+
         return (
+
 <div>
+
                  {/** Arrow dropdown menu **/}
             <Menu
                 id="basic-menu"
@@ -143,9 +165,10 @@ React.useEffect(() => {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={openMyProfile}><PersonOutlined /> &nbsp;NOTIFS</MenuItem>
-                <MenuItem onClick={openSettings}><SettingsOutlined /> &nbsp;Settings</MenuItem>
-                <MenuItem onClick={logout}><LogoutOutlined /> &nbsp;Logout</MenuItem>
+                    {notifications.map(notification =>
+                        <div><MenuItem> &nbsp;{notification.id}</MenuItem></div>
+                    )}
+
             </Menu>
 
 
