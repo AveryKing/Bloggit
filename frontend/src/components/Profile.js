@@ -119,10 +119,10 @@ const Profile = ({app, userId, self = false}) => {
                                 {friendStatus === 0 ? <Button variant='contained' size='small' color='secondary'
                                                               onClick={sendFriendRequest}>Add friend</Button> : null}
                                 {friendStatus === 1 ? <Button variant='contained' size='small' color='secondary'
-                                                              onClick={sendFriendRequest}>Request
+                                                              >Request
                                     pending</Button> : null}
                                 {friendStatus === 2 ? <Button variant='contained' size='small' color='secondary'
-                                                              onClick={sendFriendRequest}>Remove Friend</Button> : null}
+                                                              onClick={()=>alert('are you sure?')}>Remove Friend</Button> : null}
 
                                 <Button variant='contained' size='small' color='secondary'>Message</Button>
                                 <Button size='small' color='secondary'><KeyboardArrowDown/></Button>
