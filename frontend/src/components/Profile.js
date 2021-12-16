@@ -20,13 +20,8 @@ const Profile = ({app,userId,self=false}) => {
         self = true
     }
     const [user, setUser] = useState(null)
-    /** Friend Status:
-     * 0 - Not added
-     * 1 - Request pending
-     * 2 - Friends
-     * 3 - Request denied
-     */
-    const [friendStatus, setFriendStatus] = useState(1)
+
+    const [friendStatus, setFriendStatus] = useState(false)
 
 
     useEffect(() => {
@@ -40,9 +35,9 @@ const Profile = ({app,userId,self=false}) => {
         userService.getFriends(JSON.parse(localStorage.getItem('bloggitUser')).userId)
             .then(friends => {
                 if(friends.includes(userId))
-                    setFriendStatus(2)
+                    setFriendStatus(true)
                 else
-                    setFriendStatus(0)
+                    setFriendStatus(false)
             })
     })
 
