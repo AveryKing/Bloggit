@@ -123,6 +123,12 @@ const NavBar = ({ loggedIn = false, app }) => {
         });
     };
 
+    const declineFriendRequest = (notificationId) => {
+        notificationsService.declineRequest(notificationId).then((userDeclined) => {
+            app("profile",userDeclined)
+        })
+    }
+
     if (!loggedIn) {
         return (
             <nav className="navbar navbar-light navbar-expand-lg navigation-clean-button">
@@ -245,7 +251,10 @@ const NavBar = ({ loggedIn = false, app }) => {
                                     >
                                         Accept
                                     </Button>
-                                    <Button size="small" color="error" variant="text">
+                                    <Button onClick={() => declineFriendRequest(notification.id)}
+                                            size="small"
+                                            color="error"
+                                            variant="text">
                                         Decline
                                     </Button>
                                 </center>
