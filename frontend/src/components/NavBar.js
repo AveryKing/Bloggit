@@ -165,7 +165,7 @@ React.useEffect(() => {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                    {notifications.map(notification =>
+                    {[...notifications].reverse().map(notification =>
                         <div><MenuItem> &nbsp;{notification.notificationData.message}</MenuItem></div>
                     )}
 
