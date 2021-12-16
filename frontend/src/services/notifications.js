@@ -26,7 +26,7 @@ const acceptRequest = (notificationId) => {
 }
 
 const declineRequest = (notificationId) => {
-    const request = axios.post(`${baseUrl}/decline`, {notificationId: notificationId})
+    const request = axios.post(`${baseUrl}/decline`, {id: notificationId})
     return request.then(response => response.data.userDeclined)
 }
 
