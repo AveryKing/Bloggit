@@ -22,6 +22,11 @@ const getFriends = (id) => {
     return request.then(response => response.data)
 }
 
+const removeFriend = (user1, user2) => {
+    const request = axios.post(`${baseUrl}/friends/remove`, {user1:user1, user2: user2})
+    return request.then(response => response.data)
+}
+
 const getOutgoingFriendRequests = (id) => {
     const request = axios.get(`${baseUrl}/friends/outgoing/${id}`)
     return request.then(response => response.data)
