@@ -87,7 +87,7 @@ const Profile = ({app,userId,self=false}) => {
 
                                     </Typography>
                                     <ButtonGroup  sx={{color:'primary', position:'relative',left:'200px',bottom:'32px'}} variant="contained" aria-label="outlined primary button group">
-                                        {!friendStatus ? <Button variant='contained' size='small'  color='primary' onClick={sendFriendRequest}>Add friend</Button>
+                                        {!friendStatus ? <Button variant='contained' size='small'  color='secondary' onClick={sendFriendRequest}>Add friend</Button>
                                             : <Button variant='contained' size='small'  color='secondary' onClick={()=>{alert('This feature is under development')}}>Cancel Friend Request</Button> }
                                     <Button variant='contained' size='small' color='secondary'>Message</Button>
                                         <Button size='small' color='secondary'><KeyboardArrowDown /></Button>
