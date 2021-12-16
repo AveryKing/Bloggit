@@ -26,8 +26,17 @@ notificationsRouter.get('/count/:user', async (request, response) => {
 notificationsRouter.post('/', async (request, response) => {
 //TODO: Prevent double requests from being sent, implement auth
 
+    let notificationMessage
+    await User.findById(request.body.userFrom).then(user => {
+            notificationMessage = `${user.username} has sent you a friend request.`
+    })
+
+
     const notification = new Notification({
-        notificationData: {type:request.body.notificationType},
+        notificationData: {
+                            type:request.body.notificationType,
+                            message:notificationMessage
+                            },
         userFrom: request.body.userFrom,
         userTo: request.body.userTo
     })
