@@ -117,6 +117,7 @@ const NavBar = ({ loggedIn = false, app }) => {
 
     const acceptFriendRequest = (notificationId) => {
         notificationsService.acceptRequest(notificationId).then((userAdded) => {
+
             handleNotifsClose();
 
             app("profile", userAdded);
