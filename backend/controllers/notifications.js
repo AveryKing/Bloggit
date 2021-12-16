@@ -99,7 +99,7 @@ notificationsRouter.post("/", async (request, response) => {
     }
 
     const user = await User.findById(request.body.userTo);
-
+    user.incomingFriendRequests.push(request.body.userFrom)
     await notification
         .save()
         .then((notif) => {
