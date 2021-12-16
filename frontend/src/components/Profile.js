@@ -79,8 +79,11 @@ const Profile = ({app, userId, self = false}) => {
     const removeFriend = () => {
         const user1 = userId
         const user2 = JSON.parse(localStorage.getItem('bloggitUser')).userId
+        userService.removeFriend(user1,user2).then(res => {
+            setFriendStatus(0)
+        })
 
-        userService.removeFriend(user1,user2)
+
     }
 
     if (!self) {
