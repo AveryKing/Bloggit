@@ -20,6 +20,12 @@ notificationsRouter.post('/', async (request, response) => {
         userTo: request.body.userTo
     })
 
+    if(request.body.notificationType === 'friendRequest') {
+        const user = await User.findById(request.body.userFrom)
+        user.outgoingFriendRequests.push(request.body.userTo)
+        await user.save()
+    }
+
     const user = await User.findById(request.body.userTo)
 
     await notification.save().then(notif => {
