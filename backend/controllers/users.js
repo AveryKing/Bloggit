@@ -47,5 +47,25 @@ usersRouter.get('/friends/outgoing/:id', async (request, response) => {
     })
 })
 
+usersRouter.post('/friends/remove', async (request, response) => {
+    const user1 = request.body.user1
+    const user2 = request.body.user2
+
+    await User.findById(user1).then(user => {
+        user.friends.pull(user2)
+        user.save().then(async func => {
+            await User.findById(user2).then(user => {
+                user.friends.pull(user1)
+                user.save().then(func => {
+                    response.json({"message":"success"})
+                })
+            })
+        })
+    }).catch(err => {
+        response.json({error:'there was an error with your request'})
+    })
+
+
+})
 module.exports = usersRouter
 
