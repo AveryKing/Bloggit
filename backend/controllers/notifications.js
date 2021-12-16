@@ -13,7 +13,7 @@ notificationsRouter.get('/count/:user', async (request, response) => {
 
 notificationsRouter.post('/', async (request, response) => {
 //TODO: Prevent double requests from being sent, implement auth
-        console.log('in controller')
+
     const notification = new Notification({
         notificationData: {type:request.body.notificationType},
         userFrom: request.body.userFrom,
@@ -26,7 +26,7 @@ notificationsRouter.post('/', async (request, response) => {
 
        user.notifications = user.notifications.concat(notif.id)
         user.save()
-       // console.log(notif)
+
         response.json(notif)
     }).catch(err => {
         console.log(err)
