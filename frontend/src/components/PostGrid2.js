@@ -40,6 +40,14 @@ export default function ColumnsGrid({type='main',app, id}) {
     }, [])
     if(type === 'main') {
 
+        if(posts.length === 0) {
+            return (
+                <div>
+                <Typography variant='h5' sx={{marginLeft:'10%',marginTop:'20px',marginBottom:'5px'}}>Recent Posts</Typography>
+                <Typography variant='h6' sx={{marginLeft:'10%',marginTop:'20px',marginBottom:'5px'}}>There are currently no posts.</Typography>
+                </div>
+            )
+        }
         return (
             <div>
 
