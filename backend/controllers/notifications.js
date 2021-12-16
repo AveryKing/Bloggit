@@ -48,6 +48,33 @@ notificationsRouter.post("/accept", async (request, response) => {
         });
 });
 
+notificationsRouter.post('/decline', async (request, response) => {
+    let userFrom;
+    let userTo;
+    await Notification.findByIdAndRemove(request.body.id)
+        .then(async (notif) => {
+            userFrom = notif.userFrom;
+            userTo = notif.userTo;
+            await User.findById(userFrom)
+                .then(async (user) => {
+                    await user.outgoingFriendRequests.pull(userTo);
+                    user.save().then(async (func) => {
+                        await User.findById(userTo).then(async (user) => {
+                            await user.notifications.pull(request.body.id);
+                            user.save();
+                            response.json({ userDeclined: userFrom });
+                        });
+                    });
+                })
+                .catch((err) => {
+                    response.json({ error: "there was an error" });
+                });
+        })
+        .catch((err) => {
+            response.json({ error: "there was an error" });
+        });
+})
+
 notificationsRouter.post("/", async (request, response) => {
     //TODO: Prevent double requests from being sent, implement auth
 
