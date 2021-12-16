@@ -30,6 +30,12 @@ const userSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: this
         }
+    ],
+    incomingFriendRequests: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: this
+        }
     ]
 })
 
