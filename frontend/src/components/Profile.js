@@ -27,6 +27,8 @@ const Profile = ({app,userId,self=false}) => {
      * 3 - Request denied
      */
     const [friendStatus, setFriendStatus] = useState(1)
+
+
     useEffect(() => {
         userService.getUser(userId).then(user => {
             setUser(user)
@@ -34,6 +36,15 @@ const Profile = ({app,userId,self=false}) => {
         })
     },[])
 
+    useEffect(() => {
+        userService.getFriends(JSON.parse(localStorage.getItem('bloggitUser')).userId)
+            .then(friends => {
+                if(friends.includes(userId))
+                    setFriendStatus(2)
+                else
+                    setFriendStatus(0)
+            })
+    })
 
     const sendFriendRequest = () => {
 
