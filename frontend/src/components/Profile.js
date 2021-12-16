@@ -14,9 +14,9 @@ import notificationService from '../services/notifications'
 import * as React from "react";
 import {useEffect, useState} from "react";
 
-const Profile = ({app,userId,self=false}) => {
+const Profile = ({app, userId, self = false}) => {
 
-    if(userId === JSON.parse(localStorage.getItem('bloggitUser')).userId) {
+    if (userId === JSON.parse(localStorage.getItem('bloggitUser')).userId) {
         self = true
     }
     const [user, setUser] = useState(null)
@@ -33,27 +33,30 @@ const Profile = ({app,userId,self=false}) => {
     useEffect(() => {
         userService.getUser(userId).then(user => {
             setUser(user)
-           console.log(user)
+            console.log(user)
         })
-    },[])
+    }, [])
 
     useEffect(() => {
         userService.getFriends(JSON.parse(localStorage.getItem('bloggitUser')).userId)
             .then(friends => {
-                if(friends.includes(userId))
+                if (friends.includes(userId)) {
                     //User is a friend
                     setFriendStatus(2)
-                else {
+
+                } else {
                     userService.getOutgoingFriendRequests(JSON.parse(localStorage.getItem('bloggitUser')).userId)
                         .then(outgoingFriendRequests => {
-                            if(outgoingFriendRequests.includes(userId)) {
+
+                            if (outgoingFriendRequests.includes(userId)) {
                                 //User not a friend, no request pending
-                                setFriendStatus(0)
-                            } else {
-                                //Friend request is currently pending
+
                                 setFriendStatus(1)
+                            } else {
+                                //User is not a friend
+                                setFriendStatus(0)
                             }
-                    })
+                        })
                 }
 
             })
@@ -61,6 +64,7 @@ const Profile = ({app,userId,self=false}) => {
 
     const sendFriendRequest = () => {
 
+        setFriendStatus(1)
         const notification = {
             userFrom: JSON.parse(localStorage.getItem('bloggitUser')).userId,
             userTo: userId,
@@ -76,61 +80,65 @@ const Profile = ({app,userId,self=false}) => {
         alert('This feature is under development')
     }
 
-    if(!self) {
+    if (!self) {
         return (
 
 
-  <div class='container-fluid'>
-      <center>
+            <div class='container-fluid'>
+                <center>
 
-                            <Box xs={12}
-                                sx={{
-                                    alignItems: 'center',
-                                    justifyContent: 'space-around',
+                    <Box xs={12}
+                         sx={{
+                             alignItems: 'center',
+                             justifyContent: 'space-around',
 
-                                    zIndex: -1,
-                                    height: 200,
-                                    borderRadius: 4,
-                                    backgroundColor: '#6c6c6c',
-                                    '&:hover': {
-                                        backgroundColor: '#6c6c6c',
-                                        opacity: 0.95,
-                                    },
-                                }}
-                            >
-                                <br/> <br/>
-                                <Avatar
-                                    alt={user ? user.username : null}
-                                    src="/static/images/avatar/1.jpg"
-                                    sx={{width: 100, height: 100}}
-                                />
+                             zIndex: -1,
+                             height: 200,
+                             borderRadius: 4,
+                             backgroundColor: '#6c6c6c',
+                             '&:hover': {
+                                 backgroundColor: '#6c6c6c',
+                                 opacity: 0.95,
+                             },
+                         }}
+                    >
+                        <br/> <br/>
+                        <Avatar
+                            alt={user ? user.username : null}
+                            src="/static/images/avatar/1.jpg"
+                            sx={{width: 100, height: 100}}
+                        />
 
-                                <div >
-                                    <Typography variant="h5" color="white">
-                                        {user ? user.username : null}
+                        <div>
+                            <Typography variant="h5" color="white">
+                                {user ? user.username : null}
 
-                                    </Typography>
-                                    <ButtonGroup  sx={{color:'primary', position:'relative',left:'200px',bottom:'32px'}} variant="contained" aria-label="outlined primary button group">
-                                        {!friendStatus ? <Button variant='contained' size='small'  color='secondary' onClick={sendFriendRequest}>Add friend</Button>
-                                            : <Button variant='contained' size='small'  color='secondary' onClick={removeFriend}>remove friend</Button> }
-                                    <Button variant='contained' size='small' color='secondary'>Message</Button>
-                                        <Button size='small' color='secondary'><KeyboardArrowDown /></Button>
-                                    </ButtonGroup>
-                                </div>
+                            </Typography>
+                            <ButtonGroup sx={{color: 'primary', position: 'relative', left: '200px', bottom: '32px'}}
+                                         variant="contained" aria-label="outlined primary button group">
+                                {friendStatus === 0 ? <Button variant='contained' size='small' color='secondary'
+                                                              onClick={sendFriendRequest}>Add friend</Button> : null}
+                                {friendStatus === 1 ? <Button variant='contained' size='small' color='secondary'
+                                                              onClick={sendFriendRequest}>Request
+                                    pending</Button> : null}
+                                {friendStatus === 2 ? <Button variant='contained' size='small' color='secondary'
+                                                              onClick={sendFriendRequest}>Remove Friend</Button> : null}
 
-
-
-                            </Box>
-
-</center>
-
-
-    <PostGrid2 app={app} id={userId} type='profile'/>
+                                <Button variant='contained' size='small' color='secondary'>Message</Button>
+                                <Button size='small' color='secondary'><KeyboardArrowDown/></Button>
+                            </ButtonGroup>
+                        </div>
 
 
+                    </Box>
 
-        </div>
+                </center>
 
+
+                <PostGrid2 app={app} id={userId} type='profile'/>
+
+
+            </div>
 
 
         )
