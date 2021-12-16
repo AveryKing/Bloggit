@@ -15,12 +15,13 @@ import {
     NotificationsOutlined, PersonOutlined,
     SettingsOutlined
 } from "@mui/icons-material";
-import {ButtonGroup, IconButton} from "@mui/material";
+import {ButtonGroup, IconButton, ListItemText} from "@mui/material";
 import App from "../App";
 import Snackbar from "./Snackbar";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 const NavBar = ({loggedIn = false, app}) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -145,6 +146,14 @@ React.useEffect(() => {
                 id="basic-menu"
                 anchorEl={anchorEl}
                 open={open}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
                 onClose={handleClose}
                 MenuListProps={{
                     'aria-labelledby': 'basic-button',
@@ -157,16 +166,38 @@ React.useEffect(() => {
 
                 {/** Notifications dropdown menu **/ }
                 <Menu
+                    sx={{position:'absolute',borderRadius:'10px'}}
                 id="basic-menu"
                 anchorEl={anchorEl2}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                    }}
                 open={notifsOpen}
                 onClose={handleNotifsClose}
+
                 MenuListProps={{
                     'aria-labelledby': 'basic-button',
                 }}
             >
                     {[...notifications].reverse().map(notification =>
-                        <div><MenuItem> &nbsp;{notification.notificationData.message}</MenuItem></div>
+                        <div><MenuItem divider
+                                       disableGutters
+                                       disableRipple
+
+                                       sx={{borderRadius:'10px',justifyContent:'space-around',alignItems:'center',fontSize:'.8rem',display:'block'}}>
+                            <center>
+                            &emsp;{notification.notificationData.message}&emsp;<br/>
+
+                               <Button size='small' color='primary' variant='text'>Accept</Button>
+                               <Button size='small' color='error' variant='text'>Decline</Button>
+                           </center>
+
+                        </MenuItem> </div>
                     )}
 
             </Menu>
