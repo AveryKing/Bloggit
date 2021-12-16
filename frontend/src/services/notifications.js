@@ -19,6 +19,16 @@ const getNotifications = (userId) => {
     return request.then(response => response.data)
 }
 
+const acceptRequest = (notificationId) => {
+    const request = axios.post(`${baseUrl}/accept/${notificationId}`)
+    return request.then(response => response.data)
+}
+
+const declineRequest = (notificationId) => {
+    const request = axios.post(`${baseUrl}/decline/${notificationId}`)
+    return request.then(response => response.data)
+}
+
 export default {
-    dispatch,getNotificationCount,getNotifications
+    dispatch,getNotificationCount,getNotifications,acceptRequest,declineRequest
 }
