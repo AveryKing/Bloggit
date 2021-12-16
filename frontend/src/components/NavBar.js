@@ -166,7 +166,7 @@ React.useEffect(() => {
                 }}
             >
                     {notifications.map(notification =>
-                        <div><MenuItem> &nbsp;{notification.id}</MenuItem></div>
+                        <div><MenuItem> &nbsp;{notification.notificationData.message}</MenuItem></div>
                     )}
 
             </Menu>
