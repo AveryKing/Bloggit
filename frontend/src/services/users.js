@@ -22,6 +22,12 @@ const getFriends = (id) => {
     return request.then(response => response.data)
 }
 
+const getOutgoingFriendRequests = (id) => {
+    const request = axios.get(`${baseUrl}/friends/outgoing/${id}`)
+    return request.then(response => response.data)
+
+}
+
 /*
 const update = (id, newObject) => {
     const request = axios.put(`${baseUrl}/${id}`, newObject)
@@ -35,5 +41,5 @@ const erase =(id) => {
  */
 
 export default {
-    getAll,getUser,create,getFriends
+    getAll,getUser,create,getFriends,getOutgoingFriendRequests
 }
