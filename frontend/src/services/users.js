@@ -46,5 +46,5 @@ const erase =(id) => {
  */
 
 export default {
-    getAll,getUser,create,getFriends,getOutgoingFriendRequests
+    getAll,getUser,create,getFriends,getOutgoingFriendRequests,removeFriend
 }
