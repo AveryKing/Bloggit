@@ -41,5 +41,12 @@ usersRouter.get('/friends/:id', async (request, response) => {
     })
 })
 
+usersRouter.get('/friends/outgoing/:id', async (request, response) => {
+    const id = request.params.id
+    await User.findById(id).then(user => {
+        response.json(user.outgoingFriendRequests)
+    })
+})
+
 module.exports = usersRouter
 
