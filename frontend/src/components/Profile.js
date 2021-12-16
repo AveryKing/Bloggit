@@ -50,7 +50,6 @@ const Profile = ({app, userId, self = false}) => {
 
                             if (outgoingFriendRequests.includes(userId)) {
                                 //User not a friend, no request pending
-
                                 setFriendStatus(1)
                             } else {
                                 //User is not a friend
