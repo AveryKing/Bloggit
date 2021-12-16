@@ -39,7 +39,7 @@ notificationsRouter.post('/accept', async (request, response) => {
                             await user.notifications.pull(request.body.id)
                             user.friends.push(userFrom)
                             user.save()
-                            response.json({'message':'success'})
+                            response.json({'userAdded':userFrom})
                         })
                     })
 
