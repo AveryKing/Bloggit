@@ -77,7 +77,10 @@ const Profile = ({app, userId, self = false}) => {
     }
 
     const removeFriend = () => {
-        alert('This feature is under development')
+        const user1 = userId
+        const user2 = JSON.parse(localStorage.getItem('bloggitUser')).userId
+
+        userService.removeFriend(user1,user2)
     }
 
     if (!self) {
@@ -122,7 +125,7 @@ const Profile = ({app, userId, self = false}) => {
                                                               >Request
                                     pending</Button> : null}
                                 {friendStatus === 2 ? <Button variant='contained' size='small' color='secondary'
-                                                              onClick={()=>alert('are you sure?')}>Remove Friend</Button> : null}
+                                                              onClick={()=>removeFriend()}>Remove Friend</Button> : null}
 
                                 <Button variant='contained' size='small' color='secondary'>Message</Button>
                                 <Button size='small' color='secondary'><KeyboardArrowDown/></Button>
