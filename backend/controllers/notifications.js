@@ -23,6 +23,10 @@ notificationsRouter.get('/count/:user', async (request, response) => {
 
 })
 
+notificationsRouter.post('/accept/:notificationId', async (request, response) => {
+
+    await Notification.deleteOne({id:request.params.notificationId})
+})
 notificationsRouter.post('/', async (request, response) => {
 //TODO: Prevent double requests from being sent, implement auth
 
