@@ -67,10 +67,10 @@ const Profile = ({app,userId,self=false}) => {
                                     zIndex: -1,
                                     height: 200,
                                     borderRadius: 4,
-                                    backgroundColor: '#737776',
+                                    backgroundColor: '#6c6c6c',
                                     '&:hover': {
-                                        backgroundColor: '#7F807F',
-                                        opacity: 1,
+                                        backgroundColor: '#6c6c6c',
+                                        opacity: 0.95,
                                     },
                                 }}
                             >
@@ -86,9 +86,10 @@ const Profile = ({app,userId,self=false}) => {
                                         {user ? user.username : null}
 
                                     </Typography>
-                                    <ButtonGroup sx={{color:'secondary', position:'relative',left:'200px',bottom:'32px'}} variant="contained" aria-label="outlined primary button group">
-                                        <Button variant='contained' size='small'  color='secondary' onClick={sendFriendRequest}>Add friend</Button>
-                                        <Button variant='contained' size='small' color='secondary'>Message</Button>
+                                    <ButtonGroup  sx={{color:'primary', position:'relative',left:'200px',bottom:'32px'}} variant="contained" aria-label="outlined primary button group">
+                                        {!friendStatus ? <Button variant='contained' size='small'  color='primary' onClick={sendFriendRequest}>Add friend</Button>
+                                            : <Button variant='contained' size='small'  color='secondary' onClick={()=>{alert('This feature is under development')}}>Cancel Friend Request</Button> }
+                                    <Button variant='contained' size='small' color='secondary'>Message</Button>
                                         <Button size='small' color='secondary'><KeyboardArrowDown /></Button>
                                     </ButtonGroup>
                                 </div>
