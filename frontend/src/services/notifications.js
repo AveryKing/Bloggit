@@ -20,5 +20,5 @@ const getNotifications = (userId) => {
 }
 
 export default {
-    dispatch,getNotificationCount
+    dispatch,getNotificationCount,getNotifications
 }
