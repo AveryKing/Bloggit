@@ -238,6 +238,7 @@ const NavBar = ({ loggedIn = false, app }) => {
                                     justifyContent: "space-around",
                                     alignItems: "center",
                                     fontSize: ".8rem",
+                                    fontFamily: "Roboto",
                                     display: "block",
                                 }}
                             >
