@@ -4,10 +4,13 @@ const User = require('../models/users')
 
 
 notificationsRouter.get('/:user', async (request, response) => {
-    await User.findById(request.params.user)
-        .then(user => {
-            response.json(user.notifications)
+    const arr = []
+    await Notification.find({'userTo':request.params.user})
+        .then(notification => {
+            arr.push(notification)
     })
+
+    response.json(arr)
 })
 
 notificationsRouter.get('/count/:user', async (request, response) => {
