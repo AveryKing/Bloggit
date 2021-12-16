@@ -1,6 +1,15 @@
 const notificationsRouter = require('express').Router()
 const Notification = require('../models/notification')
 const User = require('../models/users')
+
+
+notificationsRouter.get('/:user', async (request, response) => {
+    await User.findById(request.params.user)
+        .then(user => {
+            response.json(user.notifications)
+    })
+})
+
 notificationsRouter.get('/count/:user', async (request, response) => {
 
     await User.findById(request.params.user)
