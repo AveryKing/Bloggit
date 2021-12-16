@@ -24,13 +24,21 @@ import Button from "@mui/material/Button";
 const NavBar = ({loggedIn = false, app}) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl2, setAnchorEl2] = React.useState(null);
     const [notificationCount, updateNotificationCount] = React.useState(null);
     const open = Boolean(anchorEl);
+    const notifsOpen = Boolean(anchorEl2)
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+    const handleNotifsClick = (event) => {
+        setAnchorEl2(event.currentTarget);
+    };
     const handleClose = () => {
         setAnchorEl(null);
+    };
+    const handleNotifsClose = () => {
+        setAnchorEl2(null);
     };
 
 React.useEffect(() => {
@@ -110,6 +118,7 @@ React.useEffect(() => {
     } else {
         return (
 <div>
+                 {/** Arrow dropdown menu **/}
             <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
@@ -123,25 +132,43 @@ React.useEffect(() => {
                 <MenuItem onClick={openSettings}><SettingsOutlined /> &nbsp;Settings</MenuItem>
                 <MenuItem onClick={logout}><LogoutOutlined /> &nbsp;Logout</MenuItem>
             </Menu>
+
+                {/** Notifications dropdown menu **/ }
+                <Menu
+                id="basic-menu"
+                anchorEl={anchorEl2}
+                open={notifsOpen}
+                onClose={handleNotifsClose}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                }}
+            >
+                <MenuItem onClick={openMyProfile}><PersonOutlined /> &nbsp;NOTIFS</MenuItem>
+                <MenuItem onClick={openSettings}><SettingsOutlined /> &nbsp;Settings</MenuItem>
+                <MenuItem onClick={logout}><LogoutOutlined /> &nbsp;Logout</MenuItem>
+            </Menu>
+
+
             <nav className="navbar navbar-light navbar-expand-lg navigation-clean-button">
 
                 <div className="container"><a onClick={renderApp} className="navbar-brand" href="#"><img src='http://localhost:3000/img/logo4.png' width='150px' /></a>
                     <button data-bs-toggle="collapse" className="navbar-toggler" data-bs-target="#navcol-1"><span
                         className="visually-hidden">Toggle navigation</span><span className="navbar-toggler-icon"></span>
                     </button>
+
                     <div className="collapse navbar-collapse" id="navcol-1">
+                        {/** Main menu buttons **/}
                         <ul className="navbar-nav me-auto">
                             <li className="nav-item"><a className="nav-link active" href="#">Home</a></li>
                             <li className="nav-item"><a className="nav-link" href="#">Categories</a></li>
                             <li className="nav-item"><a className="nav-link" href="#">About</a></li>
-
                         </ul>
+
+                        {/**Icon Buttons **/}
                         <span className="navbar-text actions">
                             <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={null}><MailOutlined /></Badge></IconButton>
-                            <IconButton className="navIcon" href="#"><Badge color="primary" badgeContent={notificationCount}><NotificationsOutlined /></Badge></IconButton>
+                            <IconButton onClick={handleNotifsClick} className="navIcon" href="#"><Badge color="primary" badgeContent={notificationCount}><NotificationsOutlined /></Badge></IconButton>
                             <IconButton onClick={handleClick} className="navIcon" href="#"><ArrowDropDownCircleOutlined /></IconButton>
-                           
-
                         </span>
                     </div>
                 </div>
