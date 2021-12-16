@@ -23,10 +23,41 @@ notificationsRouter.get('/count/:user', async (request, response) => {
 
 })
 
-notificationsRouter.post('/accept/:notificationId', async (request, response) => {
+notificationsRouter.post('/accept', async (request, response) => {
 
-    await Notification.deleteOne({id:request.params.notificationId})
+    let userFrom
+    let userTo
+    await Notification.findByIdAndRemove(request.body.id)
+        .then(async notif => {
+            userFrom = notif.userFrom
+            userTo = notif.userTo
+            await User.findById(userFrom).then(async user => {
+                await user.outgoingFriendRequests.pull(userTo)
+                     user.friends.push(userTo)
+                    user.save().then(async func => {
+                        await User.findById(userTo).then(async user => {
+                            await user.notifications.pull(request.body.id)
+                            user.friends.push(userFrom)
+                            user.save()
+                            response.json({'message':'success'})
+                        })
+                    })
+
+            }).catch(err => {
+                response.json({'error':'there was an error'})
+            })
+
+        })
+        .catch(err => {
+        response.json({'error':'there was an error'})
+    })
+
+
+
+
+
 })
+
 notificationsRouter.post('/', async (request, response) => {
 //TODO: Prevent double requests from being sent, implement auth
 
