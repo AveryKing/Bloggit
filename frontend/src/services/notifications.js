@@ -15,7 +15,7 @@ const getNotificationCount = (userId) => {
 }
 
 const getNotifications = (userId) => {
-    const request = axios.get(`${baseUrl}/${id}`)
+    const request = axios.get(`${baseUrl}/${userId}`)
     return request.then(response => response.data)
 }
 
