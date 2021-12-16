@@ -17,6 +17,11 @@ const create = (newObject) => {
 }
 
 
+const getFriends = (id) => {
+    const request = axios.get(`${baseUrl}/friends/${id}`)
+    return request.then(response => response.data)
+}
+
 /*
 const update = (id, newObject) => {
     const request = axios.put(`${baseUrl}/${id}`, newObject)
@@ -30,5 +35,5 @@ const erase =(id) => {
  */
 
 export default {
-    getAll,getUser,create
+    getAll,getUser,create,getFriends
 }
