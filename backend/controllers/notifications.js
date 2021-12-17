@@ -116,4 +116,11 @@ notificationsRouter.post("/", async (request, response) => {
             console.log(err);
         });
 });
+
+notificationsRouter.get('/getIncoming/:user', async (request, response) => {
+    const userId = request.params.user
+    await User.findById(userId).then(user => {
+        response.json(user.incomingFriendRequests)
+    }).catch(err => response.json({error:'there was an error'}))
+})
 module.exports = notificationsRouter;
