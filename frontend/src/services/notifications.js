@@ -30,6 +30,11 @@ const declineRequest = (notificationId) => {
     return request.then(response => response.data.userDeclined)
 }
 
+const getIncoming = (userId) => {
+    const request = axios.get(`${baseUrl}/getIncoming/${userId}`)
+    return request.then(response => response.data)
+}
+
 export default {
-    dispatch,getNotificationCount,getNotifications,acceptRequest,declineRequest
+    dispatch,getNotificationCount,getNotifications,acceptRequest,declineRequest,getIncoming
 }
