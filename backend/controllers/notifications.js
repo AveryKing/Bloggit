@@ -22,6 +22,7 @@ notificationsRouter.get("/count/:user", async (request, response) => {
 notificationsRouter.post("/accept", async (request, response) => {
     let userFrom;
     let userTo;
+
     await Notification.findByIdAndRemove(request.body.id)
         .then(async (notif) => {
             userFrom = notif.userFrom;
@@ -33,9 +34,12 @@ notificationsRouter.post("/accept", async (request, response) => {
                     user.save().then(async (func) => {
                         await User.findById(userTo).then(async (user) => {
                             await user.notifications.pull(request.body.id);
-                            user.friends.push(userFrom);
-                            user.save();
-                            response.json({ userAdded: userFrom });
+                            user.friends.push(userFrom)
+                            user.incomingFriendRequests.pull(userFrom)
+                            user.save().then(user => {
+                                response.json({ userAdded: userFrom });
+                            })
+
                         });
                     });
                 })
