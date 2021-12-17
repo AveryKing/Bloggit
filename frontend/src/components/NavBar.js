@@ -119,14 +119,17 @@ const NavBar = ({ loggedIn = false, app }) => {
         notificationsService.acceptRequest(notificationId).then((userAdded) => {
 
             handleNotifsClose();
+            app('profile', userAdded)
 
-            app("profile", userAdded);
+
         });
     };
 
     const declineFriendRequest = (notificationId) => {
         notificationsService.declineRequest(notificationId).then((userDeclined) => {
+
             app("profile",userDeclined)
+
         })
     }
 
